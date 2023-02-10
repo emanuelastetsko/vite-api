@@ -14,9 +14,19 @@ export default {
         cardsArchetypes: {
             type: Array,
             default: []
+        },
+        selectArchetypeFunction: {
+            type: Function,
+            default: null
         }
-    }
+    },
+    data(){
+        return{
+            archetypeFilter: '',
+        };
+    },
 }
+
 
 </script>
 
@@ -26,7 +36,8 @@ export default {
 
         <div class="main-container">
 
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" @change.native="selectArchetypeFunction">
+                <option value="" selected>Select an archetype</option>
                 <option :value="archetype" v-for="archetype in cardsArchetypes">{{ archetype }}</option>
             </select>
 
@@ -94,7 +105,5 @@ main{
 select{
     width: max-content;
 }
-
-
 
 </style>
