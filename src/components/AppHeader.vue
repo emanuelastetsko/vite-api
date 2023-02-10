@@ -24,7 +24,7 @@ export default {
 .header-container{
     display: flex;
     align-items: center;
-    height: 100px;
+    height: 70px;
     padding-left: 20px;
 
     .logo{

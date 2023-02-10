@@ -2,37 +2,56 @@
 
 export default {
     name: 'AppMain',
+    props: {
+        cardsList: {
+            type: Array, 
+            default: []
+        },
+        cardsCounter: {
+            type: Number,
+            default: 0
+        },
+        cardsArchetypes: {
+            type: Array,
+            default: []
+        }
+    }
 }
 
 </script>
 
 
 <template>
-
     <main>
 
         <div class="main-container">
-            <select name="type" id="type">
-                <option value="alien">Alien</option>
+
+            <select class="form-select" aria-label="Default select example">
+                <option :value="archetype" v-for="archetype in cardsArchetypes">{{ archetype }}</option>
             </select>
 
             <div class="card-box">
-                <div class="card-container">
+                <div class="card-container p-3">
                     <div class="counter-cards">
-                        <span>Found 39 cards</span> 
+                        <span>Found {{ cardsCounter }} cards</span> 
                     </div>
-                    <div class="card">
-                        <img src="" alt="">
-                        <h5></h5>
-                        <span></span>
+                    <div class="row row-cols-lg-5">
+                        <div class="col my-card" v-for="card in cardsList">
+                            <div class="card-img">
+                                <img :src="card.card_images[0].image_url" alt="Card image">
+                            </div>
+                            <div class="card-text">
+                                <h3>{{ card.name }}</h3>
+                                <h5>{{ card.archetype }}</h5>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
 
         </div>
-
     </main>
-
 </template>
 
 
@@ -53,13 +72,17 @@ main{
             width: 100%;
 
             .card-container{
-                width: 95%;
-                margin: 0 auto;
                 padding-top: 30px;
+                overflow: auto;
                 .counter-cards{
                 background-color: #212529;
                 color: white;
                 padding: 15px 10px;
+                }
+
+                .card-text{
+                    background-color: #d48f38;
+
                 }
             }
             
@@ -67,6 +90,11 @@ main{
         }
     }
 }
+
+select{
+    width: max-content;
+}
+
 
 
 </style>
