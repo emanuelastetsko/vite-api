@@ -46,13 +46,13 @@ export default {
                     <div class="counter-cards">
                         <span>Found {{ cardsCounter }} cards</span> 
                     </div>
-                    <div class="row row-cols-lg-5">
+                    <div class="row row-cols-5">
                         <div class="col my-card" v-for="card in cardsList">
                             <div class="card-img">
-                                <img :src="card.card_images[0].image_url" alt="Card image">
+                                <img :src="card.card_images[0].image_url" alt="Card image" class="img-fluid">
                             </div>
-                            <div class="card-text">
-                                <h3>{{ card.name }}</h3>
+                            <div class="card-text text-center">
+                                <h3>{{ card.name.toUpperCase() }}</h3>
                                 <h5>{{ card.archetype }}</h5>
                             </div>
                         </div>
@@ -70,12 +70,14 @@ export default {
 
 main{
     width: 100%;
+    min-height: calc(100vh - 70px);
     background-color: #d48f38;
 
     .main-container{
         padding-top: 10px;
         width: 80%;
         margin: 0 auto;
+        padding-bottom: 50px;
 
         .card-box{
             background-color: white;
@@ -93,17 +95,22 @@ main{
 
                 .card-text{
                     background-color: #d48f38;
-
+                    min-height: 150px;
                 }
             }
-            
-
         }
     }
 }
 
 select{
     width: max-content;
+}
+
+h3{
+    padding-top: 10px;
+    padding-bottom: 15px;
+    font-size: 1.5em;
+    color: white;
 }
 
 </style>
